@@ -10,4 +10,4 @@ Deutsche Version:
 
 Coding gelernt an der Schule BORG Monsberger
 
-Dies ist eine Sammlung an Coding-Erfahrung, die ich in meinen 5 Jahren am BORG Monsbergergasse 16, 8010 Graz, in dem Zweig "InfoTec" gelernt habe. Von der 5T bis zur 9T Klasse findet Sich HTML-, PHP-, CSS-, Python- und SQL- Code an und Projekte, die wir im Unterricht erledigten. Da in Klasse 7T und 9T keine Programmierprojekte anstanden, gibt es hier keine Einträge.
+Dies ist eine Sammlung an Coding-Erfahrung, die ich in meinen 5 Jahren am BORG Monsbergergasse 16, 8010 Graz, in dem Zweig "InfoTec" gesammelt habe. Von der 5T bis zur 9T Klasse findet Sich HTML-, PHP-, CSS-, Python- und SQL- Code an und Projekte, die wir im Unterricht erledigten. Da in Klasse 7T und 9T keine Programmierprojekte anstanden, gibt es hier keine Einträge.
