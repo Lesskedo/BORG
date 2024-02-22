@@ -1,0 +1,42 @@
+﻿use db_classicmodels;
+
+select count(*) from customers;
+select * from customers;
+select count(state) from customers;
+select count(*) from customers where state is null;
+-- Anz. der Kunden pro Land
+
+-- SELECT
+-- FROM [JOIN]
+-- [ON]
+-- WHERE
+-- GROUP BY
+-- HAVING
+-- ORDER BY
+
+select country as Land, count(*) as Kunden from customers
+group by country;
+
+-- nur Länder, die mit "S" beginnen
+
+select country as Land, count(*) as Kunden from customers
+where country like 'S%'
+group by country;
+-- HAVING: nach Gruppierungsergebnissen (z.B. Summen, Anzahlen, Mittelwerten, Minimal/Maximalwerten filtern
+
+-- z.B. alle Länder mit mindestens 10 Kunden
+select country as Land, count(*) as Kunden from customers
+group by country
+having Kunden != 1;
+
+-- alle Länder einmalig ausgeben
+select distinct country from customers
+order by country;
+
+-- Anzahl der Produkte pro Produktkategorie (productLine) und Händler (productVendor)
+select distinct productline_id from products;
+select distinct productVendor from products;
+
+select productline_id, productVendor, count(*) as anzahl
+from products
+group by productline_id, productVendor;

@@ -1,0 +1,81 @@
+﻿-- FOREIGN KEY CONSTRAINT
+-- Fremdschlüssel-Einschränkung
+-- "REFERENZIELLE INTEGRITÄT"
+
+-- Es geht um die Gewährleistung einer Beziehung zwischen Primary Key (PK) einer Tabelle
+-- mit dem Foreign-Key (FK) einer in Beziehung stehenden Tabelle
+
+-- Beispiel:
+-- t_classrooms (1) <---> t_students (n)
+-- 1:n Beziehung (d.h. ein Datensatz der einen Tabelle steht mit vielen (n) Datensätzen
+-- der anderen Tabelle in Beziehung (1 Schulklasse hat viele (n) Schüler))
+
+-- (1)-Tabelle - Parenttable
+-- (n)-Tabelle - Childtable
+
+-- 1:n Beziehung wird hergestellt über PK (Parenttable) und FK (Childtable)
+
+-- BSP: db_schule
+-- 1:n-Beziehung zwischen t_classrooms und t_students
+-- PK: classroom_id in t_sclassrooms
+-- FK: classroom_id in t_students
+
+-- REFERENZIELLE INTEGRITÄT
+-- eine aufrechte Beziehung zwischen PK und FK soll von der Datenbakn sichergestellt werden
+-- z.B.
+-- ein Schüler soll nur dann einer Klasse zugeordnet werden können,
+-- wenn diese Klasse bereits existiert
+-- DB-technische-Umsetzung: FOREIGN-KEY-CONSTTRAINT definieren für das FK-Feld
+
+USE db_schule;
+
+Select * from t_students;
+
+update t_students set classroom_id = 1;
+
+select * from t_classrooms;
+
+insert into t_classrooms (classroom_id, classname)
+values (1,'8t');
+
+insert into t_classrooms (classroom_id, classname)
+values (2,'9t');
+
+INSERT INTO t_students (surname,givenname,plz,ort,strasse,classroom_id)
+VALUES ('Muster','Max 1','8020','Graz','Musterweg 1',1);
+
+INSERT INTO t_students (surname,givenname,plz,ort,strasse,classroom_id)
+VALUES ('Muster','Max 9','8020','Graz','Musterweg 9',2);
+
+Select * from t_students;
+
+delete from t_students where classroom_id = 5;
+select * from t_students;
+
+-- Variante 1: ein Läschen von parent-rows (Datensätze in Parent-Table) verhindern, falls noch zugehörige child-rows vorhaden sind
+-- bzw. ein Eifügen von child-rows ohne zugehöriger parent-row verhindern
+
+ALTER TABLE `db_schule`.`t_students` ADD CONSTRAINT `FK_classroom_id` FOREIGN KEY `FK_classroom_id` (`classroom_id`)
+    REFERENCES `t_classrooms` (`classroom_id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT;
+
+INSERT INTO t_students (surname,givenname,plz,ort,strasse,classroom_id)
+VALUES ('Muster','Max 5','8020','Graz','Musterweg 5',5);
+
+    delete from t_classrooms where classroom_id = 2;
+
+
+-- Variante 2: beim Löschen von parent-rows (Datensätze in Parent-Table), für die noch zugehörige child-rows vorhanden sind, die child-rows gleich mitlöschen
+-- bzw. ein Einfügen von child-rows ohne zugehöriger parent-row verhindern
+
+ALTER TABLE `db_schule`.`t_students`
+ DROP FOREIGN KEY `FK_classroom_id`;
+
+ALTER TABLE `db_schule`.`t_students` ADD CONSTRAINT `FK_classroom_id` FOREIGN KEY `FK_classroom_id` (`classroom_id`)
+    REFERENCES `t_classrooms` (`classroom_id`)
+    ON DELETE CASCADE
+    ON UPDATE RESTRICT;
+
+select * from t_students;
+delete from t_classrooms where classroom_id=2;

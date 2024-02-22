@@ -1,0 +1,25 @@
+﻿USE db_classicmodels;
+SELECT * FROM customers;
+
+-- WH GROUP BY STATEMENTS
+-- BSP 1) Anzahl der Kunden je Land (country) ermitteln
+
+-- Bausteine für entsprechendes SELECT Statement: count,select, from, groupy by
+SELECT country as land, count(*) as kundenanzahl FROM customers
+-- WHERE
+GROUP BY country;
+-- HAVING
+-- ORDER BY
+
+-- BSP 2) Anzahl der US-Kunden je Bundesstaat
+SELECT state AS 'US-Bundesstaatt', COUNT(*) AS Kundenanzahl FROM customers
+WHERE country = 'USA'
+GROUP BY state;
+
+-- BSP 3) Wie 2) - aber es sollen nur BUndesstaaten mit mehr als 3 Kunden ausgegeben werden
+-- Hinweis: mit HAVING kann aus den Gruppierungsergebnissen gefiltert werden
+-- Funktioniert somit erst nach erfolgter Gruppierung
+SELECT state AS 'US-Bundesstaatt', COUNT(*) AS Kundenanzahl FROM customers
+WHERE country = 'USA'
+GROUP BY state
+HAVING Kundenanzahl > 3;

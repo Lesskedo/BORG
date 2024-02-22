@@ -1,0 +1,27 @@
+﻿use db_classicmodels;
+
+select distinct country from offices; -- 5 Länder
+
+select distinct country from customers; -- 27 Länder
+
+-- Kunden anzeigen in deren Ländern es Offices gibt
+
+select c.customerName, c.country from customers c
+where c.country = any (select o.country from offices o);
+
+-- =ANY() ist gleichbedeutend wie IN()
+
+select c.customerName, c.country from customers c
+where c.country in (select o.country from offices o);
+
+-- customers, payments
+-- jene Zahlung finden, die größer ist als alle anderen Zahlungen
+
+select c.customers from customers c left join payments p
+on c.customerNumber = p.customerNumber
+where p.amount > all(select amount from payments);
+
+-- Bsp aus Recherche (ChatGPT)
+select productname, price, category from products
+where price > all (select price from products where category = product.category);
+

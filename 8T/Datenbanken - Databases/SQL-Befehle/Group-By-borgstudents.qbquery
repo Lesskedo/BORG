@@ -1,0 +1,54 @@
+﻿use db_schule;
+
+select count(*) from t_borgstudents;
+
+delete from t_borgstudents;
+
+truncate t_borgstudents;
+
+select * from t_borg_students;
+
+delete from t_borgstudents where student_id = 1;
+
+-- WH GROUP BY Statement
+
+-- BSP 1) Sortierung der häufigsten Vornamen aller BORG-Schüler
+
+select vorname, count(student_id) as anzahl from t_borgstudents
+group by vorname
+order by anzahl desc;
+
+-- BSP Anzahl der Schüler pro Religion in %
+
+-- in absoluten Zahlen
+select religion, count(student_id) as anzahl from t_borgstudents
+group by religion
+order by anzahl desc;
+
+-- in Prozent
+-- anzahl/gesamt*100
+
+select count(*) from t_borgstudents;
+select religion, count(student_id)/917*100 as prozent from t_borgstudents
+group by religion
+order by prozent desc;
+
+-- BSP 3 -- Anzahl (in Prozent) der bereits volljährigen Schüler/innen
+
+-- Volljährigkeit: Alter >= 18
+
+-- Function DATEDIFF
+select DATEDIFF('2022-11-03','2022-11-02');
+-- liefert die Differenz der beiden Datumsangaben; in diesem Fall: 1
+
+select DATEDIFF('2022-11-03',gebdatum) from t_borgstudents;
+-- liefert das Alter aller Schüer in Tagen
+
+-- gebdatum ins Format JJJJ-MM-TT bringen
+
+-- TT ermitteln:
+select left(gebdatum,2) from t_borgstudents;
+-- JJJJ ermitteln:
+select right(gebdatum,4) from t_borgstudents;
+-- MM ermitteln:
+select substring

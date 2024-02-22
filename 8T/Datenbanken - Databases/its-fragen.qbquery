@@ -1,0 +1,50 @@
+﻿-- praktische Beispiele zzur ITS-201 Zertifizierungsfragen
+-- Themenbereich DDL
+
+-- Frage 1 - Musterdatenbank db_schule_lessons
+
+use db_schule_lessons;
+
+
+-- Frage 2 - exotisch WrRITE Clause (gibt es bei MySQL, MariaDB nicht)
+
+-- Frage 1 - Musterdatenbank db_schule_lessons
+-- t_lessons_2 mit (id,lesson) erstellt
+
+-- insert mit subselect
+insert into t_lessons_2 (lesson)
+select thema from t_lessons;
+
+select * from t_lessons;
+select * from t_lessons_2;
+
+-- zur eigentlichen Fragestellung 3
+-- Which keyword should you include in an UPDATE statement to set a columns value equal to a value that is stored in another table?
+
+update t_lessons_2 set lesson = (select thema from t_lessons where id=5);
+where id = 1;
+select * from t_lessons_2;
+
+use db_classicmodels;
+
+select * from customers where customerNumber = 350;
+update customers set creditLimit = creditLimit * 1.05
+where customerNumber = 350;
+
+update customers set creditLimit = creditLimit / 1.05;
+
+-- Frage 5 - mit db_schule_lessons - d.h. alle Datensätze werden gelöscht
+-- DELETE ohne WHERE
+use db_schule_lessons;
+delete from t_lessons_2;
+select * from t_lessons_2;
+
+-- *) Hinweis zu TOP: gibt es nicht in MySQL, MariaDB, Oracle
+-- Alternative LIMIT
+-- BSP) die ersten 10 Einträge löschen
+
+delete from t_lessons_2 limit 10;
+
+use db_classicmodels;
+select * from Customers
+limit 10;

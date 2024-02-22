@@ -1,0 +1,45 @@
+﻿use db_classicmodels;
+
+select c.customerName, o.orderNumber, o.status
+from customers c left outer JOIN orders o
+on c.customerNumber = o.customerNumber
+where c.customerNumber is null;
+
+use test;
+
+insert into t_klassen (klassen_id, klasse)
+values (1, '5t');
+SELECT * FROM t_klassen t;
+
+insert into t_schueler (schueler_id, name, klassen_id)
+values (1, 'Auer', 1);
+
+
+select * from t_schueler;
+
+select k.klasse, s.name
+from t_klassen k left join t_schueler s
+on k.klassen_id = s.klassen_id
+
+union all
+
+select k.klasse, s.name
+from t_klassen k right join t_schueler s
+on k.klassen_id = s.klassen_id;
+
+-- Cartesian Product / CROSS JOIN
+
+select k.klasse, s.name
+from t_klassen k cross join t_schueler s;
+
+SELECT * FROM t_equipment t;
+
+select k.klasse as Klasse,
+e.equipment as Ausstattung,
+'__________'as 'vorhanden (ja/nein)'
+from t_klassen k, t_equipment e
+order by k.klasse, e.equipment;
+
+use db_classicmodels;
+
+SELECT * FROM employees e;

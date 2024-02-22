@@ -1,0 +1,73 @@
+﻿-- die SELECT Abfrage
+
+
+USE db_classicmodels;
+
+
+-- mit SELECT * alle Spalten einer Tabelle auslesen
+select * from customers;
+
+-- mit SELECT feldname1, feldname2, ... bestimmte Spalten auslesen
+
+select customerName, postalCode, country, phone from customers;
+
+-- SORTIERTE AUSGABE
+-- mit SELECT <feldnamen> FROM <tabellenname> ORDER B <feldname(n)>
+-- eine sortierte Ausgabe erzeugen
+
+SELECT customerName,country,postalCode FROM customers
+ORDER BY country,customerName;
+
+SELECT customerNumber,orderDate,status FROM orders
+ORDER BY orderDate DESC;
+/*DESC: Descending (Absteigend),
+  ASC: Ascending (Aufsteigend)(ist default)*/
+
+-- GEFILTERTE AUSGABE
+-- SELECT <datenfelder> FROM <tabellenname> WHERE <Filterbedingung>
+
+SELECT * FROM customers WHERE customerNumber = 119;
+
+/* Filtermöglichkeiten / Vergleichsoperatoren:
+   = , > , < , >= , <= , <> , != , like , not null , ...
+
+   = Operator */
+SELECT * FROM customers WHERE country = 'Austria';
+
+/* > , < , >= , <= , <> , != , not null , is null */
+SELECT customerName,creditLimit FROM customers
+WHERE creditLimit < 1000000;
+
+SELECT customerName,creditLimit FROM customers
+WHERE creditLimit IS NULL; /* d.h. kein Kredit-Limit erfasst*/
+
+SELECT customerName,creditLimit FROM customers
+WHERE creditLimit < 1000;
+
+SELECT customerName,creditLimit FROM customers
+WHERE creditLimit >= 100000 AND creditLimit <=200000;
+
+SELECT customerName,creditLimit FROM customers
+WHERE creditLimit BETWEEN 100000 AND 200000;
+
+/* IS NULL: leere Feldinhalte filtern z.B. Kunden, die keine PLZ eingetragen haben*/
+
+SELECT * FROM customers
+WHERE postalCode  IS NULL;
+
+/* LIKE: Textvergleiche mit Platzhaltern
+   Platzhalter % ... für eine beliebige Zeichenkette
+   Platzhalter _ ... für ein beliebiges Zeichen
+
+   Alle Kunden mit einem Kundennamen der mit E beginnt */
+
+SELECT * FROM customers WHERE customerName LIKE 'E%';
+
+/* Alle Kunden mit Namen Maier, Mayer */
+
+SELECT * FROM customers WHERE contactLastName LIKE 'Ma_er';
+
+/* Alle Kunden mit Namen Maier, Mayer, Meier, Meyer */
+
+SELECT * FROM customers WHERE contactLastName LIKE 'M__er';
+-- Würde Moser auch liefern

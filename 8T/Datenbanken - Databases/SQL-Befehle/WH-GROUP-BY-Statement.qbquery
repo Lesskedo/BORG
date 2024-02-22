@@ -1,0 +1,101 @@
+﻿use db_schule;
+
+select * from t_borgstudents;
+
+select count(*) from t_borgstudents;
+
+delete from t_borgstudents where student_id = 1;
+
+
+/*WH GROUP BY Statement
+
+  BSP 1) Sortierung der häufigsten Vornamen aller BORG-Schüler*/
+
+select vorname, count(student_id) as anzahl from t_borgstudents
+where vorname like 'I%'
+group by vorname
+order by anzahl desc;
+
+/*BSP 2) Anzahl der Schüler pro Religionen in %*/
+
+/*in absoluten Zahlen*/
+select religion, count(student_id) as anzahl from t_borgstudents
+group by religion
+order by anzahl desc;
+
+/*in Prozent
+  anzahl/gesamt*100*/
+
+select count(*) from t_borgstudents;
+
+select religion, round(count(student_id)/917*100,1) as prozent from t_borgstudents
+group by religion
+order by prozent desc;
+
+/*BSP 3)volljährige Schüler/innen ermitteln
+
+  Volljährigkeit: Alter >= 18*/
+
+select datediff('2022-11-03','2022-11-03');
+/*Liefert die Differenz der beiden Datumsangaben in Tagen; in diesem Fall: 1*/
+
+select datediff('2022-11-03',gebdatum) from t_borgstudents;
+
+/*gebdatum vom TT.MM.JJJJ ins Format JJJJ-MM-TT bringen*/
+
+/*TT ermitteln*/
+select left(gebdatum,2) from t_borgstudents;
+/*JJJJ ermitteln*/
+select right(gebdatum,4) from t_borgstudents;
+/*MM ermitteln*/
+select left(right(gebdatum,7),2) from t_borgstudents;
+
+/*Strings: JJJJ mit MM und TT verknüpfen*/
+select
+concat(
+  right(gebdatum,4),'-',
+  left(right(gebdatum,7),2),'-',
+  left(gebdatum,2)
+) from t_borgstudents;
+
+/*Alter der Schüler in Tagen berechnen mit DATEDIFF*/
+
+select curdate();
+
+select
+datediff(
+  curdate(),
+  concat(
+    right(gebdatum,4),'-',
+    left(right(gebdatum,7),2),'-',
+    left(gebdatum,2)
+    )
+  )/365.25
+from t_borgstudents;
+
+/*Volljährigen ermittlen*/
+select
+datediff(
+  curdate(),
+  concat(
+    right(gebdatum,4),'-',
+    left(right(gebdatum,7),2),'-',
+    left(gebdatum,2)
+    )
+  )/365.25 as age
+from t_borgstudents
+having age >=18;
+
+/*BSP4) Anzahl der Schüler je Wohnort ermitteln*/
+
+select ort,count(student_id) as anzahl from t_borgstudents
+group by ort
+order by anzahl desc;
+
+/*BSP5) An welchem Kalendertag haben die meisten Schüler Geburtstag
+  Gruppierung nach 'TT.MM' vom Geburtsdatum*/
+
+select gebdatum from t_borgstudents;
+
+select left(gebdatum,5) as birthday, count(student_id) as anzahl
+... (34 lines left)

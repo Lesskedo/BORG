@@ -1,0 +1,5 @@
+﻿use db_shop;
+
+select * from t_orders;
+
+SELECT * FROM db_shop.t_orders t;

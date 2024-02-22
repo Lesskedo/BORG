@@ -1,0 +1,23 @@
+﻿create if not exists database db_schule;
+use db_schule;
+create table if not exists t_students (
+      student_id  integer,
+      surname  varchar(20),
+      givenname  varchar(20)
+);
+insert into t_students (student_id,surname,givenname)
+values  (1,'Stepponat','Satyanarayan'),(2,'Khawarin','Saidfiasal');
+select * from t_students;
+delete from t_students;
+update t_students set surname='Paradies' where surname='Adam';
+update t_students set givenname='Adam' where givenname='Paradies';
+
+
+ALTER TABLE `db_schule`.`t_students`
+MODIFY COLUMN `student_id` INT(11) NOT NULL,
+ADD PRIMARY KEY (`student_id`);
+
+
+ALTER TABLE `db_schule`.`t_students`
+MODIFY COLUMN `student_id` INT(11) NOT NULL AUTO_INCREMENT, ADD PRIMARY KEY ('student_id');
+

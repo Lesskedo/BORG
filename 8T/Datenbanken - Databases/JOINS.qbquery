@@ -1,0 +1,31 @@
+﻿-- JOINS
+
+-- d.h. SELECT Statements, die Datensätze aus mehreren Tabellen verbinden (to join)
+-- z.B. alle Kunden (customers) und ihre Bestellungen (oders)
+
+USE db_classicmodels;
+select count(*) from customers;
+select count(*) from orders;
+select count(*) from customers, orders;
+-- Cross Join: jeder Datensatz der einen Tabelle wird mit jedem Datensatz der anderen Tabelle verknüpft
+-- Für unser Bsp. müssen wir die Bestelldatensätze jedoch gezielt mit den richtigen Kunden verbinden --> JOIN ON
+
+
+-- d.h. PK und FK müssen für die Zuordnung der Datensätze übereinstimmen
+-- c.customerNumber ist ein PK in der Tabelle customers
+-- o.customerNumber ist ein FK in der Tabelle orders
+
+-- BSP 2) wie 1) nur dass die Bestellpositionen(orderdetails) hinzuverbunden werden sollen
+select c.customerName, c.country, o.orderDate, o.status, od.productCode, od.quantityOrdered,od.priceEach
+from customers c JOIN orders o
+ON c.customerNumber=o.customerNumber
+JOIN orderdetails od
+ON o.orderNumber=od.orderNumber
+order by customerName;
+
+-- LEFT JOIN (bzw. LEFT OUTER JOIN)
+-- alle Datensätze der im JOIN links angeführte nTabelle werden verarbeitet
+-- gibt es keine passenden Datensätze in der im JOIN rechts angeführten tabelle, dann werden NULL-Datensätze
+
+-- BSP) gesucht sind Kunden
+select c.customerName,c.country,

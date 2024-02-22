@@ -1,0 +1,31 @@
+﻿-- DML DATA MANIPULATION LANGUAGE
+
+-- DATENSÄTZE (Zeilen) in TABELLEN einfügen, ändern, löschen bzw. aus TABELLEN auslesen
+
+-- DML-BEFEHLE: INSERT, UPDATE, DELETE, SELECT
+
+USE db_schule;
+INSERT INTO t_students (student_id,surname,givenname,plz,ort,strasse)
+VALUES (7,'Muster','Max 7','8020','Graz','Musterweg 7');
+
+-- Alle Datensätze aus einer Tabelle auslesen
+SELECT * FROM t_students;
+
+-- student_id: Primary-Key-Feld mit Autoincrement-Eigenschaft
+-- d.h. die Wertebelegung wird von der DB automatisch vorgenommen
+-- d.h. wir müssen beim Einfügen von Schüler-Datensätzen uns um dieses Feld nicht kümmern
+INSERT INTO t_students (surname,givenname,plz,ort,strasse)
+VALUES ('Muster','Max 1','8020','Graz','Musterweg 1');
+
+-- Alle Datensätze aus einer Tabelle löschen
+DELETE FROM t_students;
+DELETE FROM t_students WHERE student_id = 7;
+-- bzw.
+TRUNCATE TABLE t_students;
+-- mit TRUNCATE (= DROP + CREATE TABLE) wird auch der Autoincrement-Wert des Primärschlüssels wieder auf Startwert 1 gesetzt
+
+-- Einen Datensatz ändern:
+UPDATE t_students SET givenname='Max 5' WHERE student_id=5;
+
+SELECT * FROM t_students;
+USE db_schule;

@@ -1,0 +1,116 @@
+﻿-- Frage 1 --
+
+use classicmodels;
+select * from customers;
+select count(*) from customers;
+select count(state) from customers;
+select * from customers where state is not null;
+
+
+-- Frage 2 --
+
+use classicmodels;
+select officeCode, count(*) from employees group by officeCode;
+
+
+-- Frage 3 --
+
+use classicmodels;
+select buyPrice from products
+order by buyPrice
+limit 1;
+
+-- TOP gibt es in SQL nicht - nur in T-SQL
+-- Select top 1 buyPrice from products
+-- order by buyPrice;
+
+Select min(buyPrice) from products;
+
+
+
+
+-- Frage 7 --
+use test;
+insert into zahlen values (1),(2),(3),(NULL),(-4),(-2);
+select * from zahlen;
+select count(zahl) from zahlen;
+select sum(zahl) from zahlen;
+select max(zahl) from zahlen;
+select min(zahl) from zahlen;
+select avg(zahl) from zahlen;
+
+
+
+-- Frage 8 --
+use classicmodels;
+select sum(customerName) from customers;
+
+
+-- Frage 9 --
+use classicmodels;
+select country, sum(creditLimit) as Summe from customers
+where country not in ('Italy','UK') and creditLimit > 100
+group by country
+having Summe > 400000;
+
+
+-- Frage 10 --
+use classicmodels;
+select city, country, avg(creditLimit) from customers group by city, country;
+
+
+-- Frage 12 --
+
+use classicmodels;
+select orderNumber,quantityOrdered,priceEach
+from orderdetails
+order by orderNumber;
+
+select orderNumber, sum(quantityOrdered*priceEach) as orderTotal
+from orderdetails
+group by orderNumber
+order by orderTotal desc limit 20;
+
+
+-- Frage 13 --
+
+use classicmodels;
+select orderNumber as Bestellnummer, quantityOrdered as Bestellmenge, priceEach as Einzelpreis
+from orderdetails
+order by Bestellnummer;
+
+
+-- Frage 14 --
+
+use test;
+alter table `test`.`zahlen` add column `quadrat` integer as (zahl*zahl) after `zahl`;
+select * from zahlen;
+
+
+-- Frage 16 --
+
+use classicmodels;
+select productName from products;
+select orderNumber, quantityOrdered, priceEach
+from orderdetails
+where productCode IN (select productCode from products where productName like '%Ferrari%');
+
+
+-- Frage 19 --
+
+use classicmodels;
+select orderNumber,productCode,quantityOrdered,priceEach
+from orderdetails order by orderNumber, 5 desc;
+
+
+
+-- Fage 28 --
+
+use classicmodels;
+select country, city from customers
+where customerNumber in (select customerNumber from orders where orderDate >= '2005-04-23' order by orderDate desc);
+
+-- ident mit folgendem Statement:
+use classicmodels;
+select country, city from customers
+where customerNumber =ANY (select customerNumber from orders where orderDate >= '2005-04-23' order by orderDate desc);

@@ -1,0 +1,27 @@
+﻿use db_classicmodels;
+
+-- Nur Kunden aus Staaten ermitteln, in welchen Staaten es auch ein Office gibt
+select customerName from customers c
+where c.state = any (select state from offices /* SubQuery */);
+
+select all ProductName
+from Products
+where true;
+
+select * from products;
+
+select ProductName
+from Products
+where ProductID = all
+  (select productcode
+  from orderdetails
+  where quantityOrdered >= 70);
+
+select * from orderdetails where quantityordered >=70;
+select * from db_classicmodels.offices.o;
+
+select * from offices where city <> 'Paris';
+select * from offices where not city = 'Paris';
+
+select o.state as s from Offices o join customers c
+on o.s = c.s;

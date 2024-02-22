@@ -1,0 +1,98 @@
+﻿-- praktische Beispiele zzur ITS-201 Zertifizierungsfragen
+-- Themenbereich DDL
+
+-- Frage 1 - Musterdatenbank db_schule_lessons
+
+use db_schule_lessons;
+
+
+-- Frage 2 - exotisch WrRITE Clause (gibt es bei MySQL, MariaDB nicht)
+
+-- Frage 1 - Musterdatenbank db_schule_lessons
+-- t_lessons_2 mit (id,lesson) erstellt
+
+-- insert mit subselect
+insert into t_lessons_2 (lesson)
+select thema from t_lessons;
+
+select * from t_lessons;
+select * from t_lessons_2;
+
+-- zur eigentlichen Fragestellung 3
+-- Which keyword should you include in an UPDATE statement to set a columns value equal to a value that is stored in another table?
+
+update t_lessons_2 set lesson = (select thema from t_lessons where id=5);
+where id = 1;
+select * from t_lessons_2;
+
+use db_classicmodels;
+
+select * from customers where customerNumber = 350;
+update customers set creditLimit = creditLimit * 1.05
+where customerNumber = 350;
+
+update customers set creditLimit = creditLimit / 1.05;
+
+-- Frage 5 - mit db_schule_lessons - d.h. alle Datensätze werden gelöscht
+-- DELETE ohne WHERE
+use db_schule_lessons;
+delete from t_lessons_2;
+select * from t_lessons_2;
+
+-- *) Hinweis zu TOP: gibt es nicht in MySQL, MariaDB, Oracle
+-- Alternative LIMIT
+-- BSP) die ersten 10 Einträge löschen
+
+delete from t_lessons_2 limit 10;
+
+use db_classicmodels;
+select * from Customers
+limit 10;
+
+-- FRAGE 6
+-- Where Bedingung mit logischer UND (AND) Verknüpfung
+
+-- Frage 7 -- FK Einstellung: CASCADE
+-- am BSP) db_CLassicmodels
+
+use db_classicmodels;
+
+Select c.customerName,c.customerNumber, o.orderDate, o.status, o.orderNumber, od.productCode, od.quantityOrdered, od.priceEach
+from customers c JOIN orders o
+ON c.customerNumber = o.customerNumber
+JOIN orderdetails od
+ON o.orderNumber = od.orderNumber;
+
+-- FK - Einstellung bei folgenden Tabellen auf CASCADE gestellt: orders, orderdetails und payments
+
+DELETE FROM customers WHERE customerNumber = 103;
+
+select * from payments where customerNumber=103;
+
+-- FRAGE 8
+-- bei einem INSERT bei dem alle Spalten einer Tabelle befüllt werden müssen diese im Insert Statement nicht angeführt werden
+-- BSP db_classicmodels / Tabelle: productlines
+-- die Tabelle besitzt 4 Spalten
+
+select customerNumber from customers;
+-- um festzustellen welche CustomerNumbers es gibt
+
+INSERT INTO payments
+(customerNumber,checkNumber,paymentDate,amount)
+VALUES (125,10000,'2023-01-26',1000);
+-- nach dem alle Tabellenfelder befüllt werden
+-- kann das Statement verkürzt werden
+INSERT INTO payments
+VALUES (125,10000,'2023-01-26',1000);
+
+-- FRAGE 9
+-- Befüllen einer Tabelle mit NOT NULL Feldern
+-- BSP db_classicmodels / Tabelle: payments
+-- die Tabelle hat 4 Felder - alle NOT NULL
+
+-- Wir fügen eine Zahlung hinzu, ohne Angabe eines Betrags
+INSERT INTO payments
+(customerNumber,checkNumber,paymentDate)
+VALUES (125,10002,'2023-01-26');
+
+select * from payments where customerNumber=125;
