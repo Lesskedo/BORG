@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Titel</title>
+  </head>
+  <body>
+	<h3>1. Tabelle mit Rand(5px) und Zellenabstand (5px)</h3>
+	<table border="5" cellspacing="5">
+		<tr>
+			<td>Erste Zelle</td> <td>Zweite Zelle</td> <td>Dritte Zelle</td>
+		</tr>
+		<tr>
+			<td>Vierte Zelle</td> <td>Fünfte Zelle</td> <td>Sechste Zelle</td>
+		</tr>
+	</table>
+	<h3>2. Tabelle mit Hintergrund</h3>
+	<table border="1" bgcolor="green">
+		<tr>
+			<td>Erste Zelle</td> <td>Zweite Zelle</td> <td>Dritte Zelle</td>
+		</tr>
+		<tr>
+			<td>Vierte Zelle</td> <td>Fünfte Zelle</td> <td>Sechste Zelle</td>
+		</tr>
+	</table>
+	<h3 align="center">3. Zentrierte Tabelle mit 75% Breite</h3>
+	<table border="1" width="75%" align="center">
+		<tr>
+			<td>Erste Zelle</td> <td>Zweite Zelle</td> <td>Dritte Zelle</td>
+		</tr>
+		<tr>
+			<td>Vierte Zelle</td> <td>Fünfte Zelle</td> <td>Sechste Zelle</td>
+		</tr>
+	</table>
+	<h3 align="right">4. Rechtsbündige Tabelle mit 50% Breite</h3>
+	<table border="1" width="50%" align="right">
+		<tr>
+			<td>Erste Zelle</td> <td>Zweite Zelle</td> <td>Dritte Zelle</td>
+		</tr>
+		<tr>
+			<td>Vierte Zelle</td> <td>Fünfte Zelle</td> <td>Sechste Zelle</td>
+		</tr>
+	</table>
+	<h3>5. Bunte Tabelle mit unterschiedlicher Zellausrichtung mit 50% Breite</h3>
+	<table border="1" width="50%">
+		<tr>
+			<td colspan="2" bgcolor="red">Zelle 1</td><td bgcolor="yellow" align="right">Zelle 2</td>
+		</tr>
+		<tr>
+			<td bgcolor="green" colspan="2">Zelle 3 <br> Text Text Text</td> <td bgcolor="blue" align="center" valing="middle">Zelle 4</td>
+		</tr>
+		<tr>
+			<td colspan="2" bgcolor="orange">Zelle 5</td>
+		</tr>
+	</table>
+	<h3 align="center">6. Verbinden von Zellen und 50% Tabellenbreite</h3>
+	<table border="1" width="50%" align="center">
+		<tr>
+			<td colspan="2" rowspan="2">Zelle 1</td> <td>Zelle 2</td> <td colspan="2" rowspan="2">Zelle 3</td>
+		</tr>
+		<tr>
+			<td>Zelle 4</td>
+		</tr>
+		<tr>
+			<td colspan="4">Zelle 5</td>
+		</tr>
+	</table>
+  </body>
+</html>

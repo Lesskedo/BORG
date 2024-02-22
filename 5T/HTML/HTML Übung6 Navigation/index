@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+  </head>
+  <body>
+	<table>
+	<tr>
+		<td>home.jpg</td> <td>Seite1</td> <td>Seite2</td> <td>Download</td>
+	</tr>
+	</table>
+  </body>
+</html>

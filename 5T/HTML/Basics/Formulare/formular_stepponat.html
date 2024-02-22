@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formular</title>
+  </head>
+  <body>
+  <h1>Übung Formular</h1>
+  <table border="1">
+	<form action="formular_stepponat.html" method="post">
+	<tr><td>Vorname:</td> <td><input type="text" name="eingabe"></td></tr>
+	<tr><td>Nachname:</td> <td><input type="text" name="eingabe"></td></tr>
+	<br>
+	<tr><td>Geschlecht:</td> <td><input type="radio" name="radio1" value="männlich">männlich
+	<br>
+	<input type="radio" name="radio1" value="weiblich">weiblich</td></tr>
+	<br>
+	<tr><td>Eigenschaften</td><td><input type="checkbox" name="Raucher" value="raucher">Raucher
+	<br>
+	<input type="checkbox" name="Autofahrer" value="autofahrer">Autofahrer
+	<br>	
+	<input type="checkbox" name="HTML-Freak" value="html-freak">HTML-Freak</td></tr>
+	<tr><td>Wohnort</td><td><select name="graz">
+		<option>Graz</option>
+		<option>Wien</option>
+		<option>Linz</option>
+		<option>Innsbruck</option>
+		</td><tr>
+	</select>
+	<tr><td>Kommentar:</td> <td><textarea name="kommentar" cols="50" rows="5">
+	</textarea></td></tr>
+	<br>
+	<tr><td>Formular</td><td><input type="submit" value="Absenden">
+	
+	<input type="reset" name="reset" value="Abbrechen"></td></tr>
+
+	</form>
+	</table>
+  </body>
+</html>
