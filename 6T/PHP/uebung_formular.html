@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>uebung_formular</title>
+  </head>
+  <body>
+  <h1>Übung Formular</h1>
+	<form action="uebung_formular.html" method="post">
+	<table border="1">
+		<tr>
+			<td align="right" valign="top">Vorname:</td><td><input type="text" name="eingabe"></td><br>
+		</tr>
+		<tr>
+		<td align="right" valign="top">Zuname:</td><td><input type="text" name="eingabe"></td><br>
+		</tr>
+		<tr>
+		<td align="right" valign="top">Geschlecht:</td><td><input type="radio" name="radio1">männlich<br><input type="radio" name="radio1">weiblich</td></td></td>
+		</tr>
+		<tr>
+		<td align="right" valign="top">Eigenschaften:</td><td><input type="checkbox" name="box1">Raucher<br>
+		<input type="checkbox" name="box2">Autofahrer<br>
+		<input type="checkbox" name="box3">HTML-Freak</td>
+		<tr>
+		<td align="right" valign="top">Wohnort:</td><td><select name="auswahl">
+			<option>Graz</option>
+			<option>Wien</option>
+			<option>Linz</option>
+			<option>Innsbruch</option>
+		</select></td>
+		</tr>
+		<tr>
+		<td align="right" valign="top">Kommentar:</td><td><textarea name="kommentar" cols="50" rows="5">
+		</textarea></td>
+		</tr>
+		<tr>
+		<td align="right" valign="top">Formular:</td><td><input type="submit" name="absenden">
+		<input type="reset" name="zurücksetzen"></td>
+		</tr>
+	</table>
+	</form>
+  </body>
+</html>
