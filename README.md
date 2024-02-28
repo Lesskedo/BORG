@@ -1,5 +1,5 @@
 # BORG
-English Version:
+English version:
 
 Coding learned at the school BORG Monsberger
 
